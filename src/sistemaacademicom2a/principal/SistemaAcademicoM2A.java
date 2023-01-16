@@ -1,7 +1,11 @@
 package sistemaacademicom2a.principal;
 
 import java.util.Scanner;
+import sistemaacademicom2a.colecciones.Consultar;
+import sistemaacademicom2a.colecciones.Crear;
+import sistemaacademicom2a.colecciones.Mostrar;
 import sistemaacademicom2a.impresiones.*;
+import sistemaacademicom2a.validaciones.*;
 
 /**
  *
@@ -11,16 +15,32 @@ public class SistemaAcademicoM2A {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String op;
-        boolean error = false;
+        String op, ops, auxCodigo;
         
-        do {
-            Menu.MostrarMenu();
-            op = in.next();      
-        } while (error);
+        op = Menu.MostrarMenu();
+        ops =SubMenu.MostrarSubMenu(op);
         
-        SubMenu.MostrarSubMenu(op);
-        op = in.next();
+        switch(ops) {
+            case "1":
+                Crear.CrearInstancias(op);
+                break;
+            case "2":
+                Mostrar.GenerarReporte(op);
+                break;
+            case "3":
+                if (!(op.equalsIgnoreCase("3"))) {    
+                    auxCodigo = ValidarAtributos.ValidarCedula();
+                    Consultar.ConsultarExistencia(auxCodigo, op);
+                } else {
+                    auxCodigo = ValidarAtributos.ValidarCodigoAula();
+                    Consultar.ConsultarExistencia(auxCodigo, op);
+                }
+                break;
+            case "4":
+                
+            case "5":
+                
+        }
         
         
         

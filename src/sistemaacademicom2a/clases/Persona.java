@@ -8,8 +8,9 @@ public abstract class Persona {
     private String apellido;
     private int edad;
     private char sexo;
-    private boolean Asistencia;
+    private boolean Asistencia = true;
     private int numeroFaltas;
+    private boolean disponibilidad = true;
     
     // Constante
     private final int DIASTRABAJADOS = 100;
@@ -19,15 +20,16 @@ public abstract class Persona {
         
     }
 
-    public Persona(String cedula, String nombre, String apellido, int edad, char sexo, boolean Asistencia, int numeroFaltas) {
+    public Persona(String cedula, String nombre, String apellido, int edad, char sexo, int numeroFaltas, boolean disponiblidad) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.sexo = sexo;
-        this.Asistencia = Asistencia;
         this.numeroFaltas = numeroFaltas;
+        this.disponibilidad = disponibilidad;
     }
+
     
     // setter
     public void setCedula(String cedula) { this.cedula = cedula;}
@@ -43,6 +45,8 @@ public abstract class Persona {
     public void setAsistencia(boolean Asistencia) { this.Asistencia = Asistencia;}
 
     public void setNumeroFaltas(int numeroFaltas) { this.numeroFaltas = numeroFaltas;}
+    
+    public void setDisponibilidad(boolean disponibilidad) { this.disponibilidad = disponibilidad;}
     
     //getter
     public String getCedula() { return cedula;}
@@ -60,6 +64,9 @@ public abstract class Persona {
     public int getNumeroFaltas() { return numeroFaltas;}
 
     public int getDIASTRABAJADOS() { return DIASTRABAJADOS;}
+
+    public boolean isDisponibilidad() { return disponibilidad;}
+    
     
     // toString
     @Override

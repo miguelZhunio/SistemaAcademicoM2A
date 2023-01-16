@@ -14,8 +14,12 @@ public class Profesor extends Persona{
         super();
     }
 
-    public Profesor(String materia, String cedula, String nombre, String apellido, int edad, char sexo, boolean Asistencia, int numeroFaltas) {
-        super(cedula, nombre, apellido, edad, sexo, Asistencia, numeroFaltas);
+    public Profesor(String materia) {
+        this.materia = materia;
+    }
+
+    public Profesor(String materia, String cedula, String nombre, String apellido, int edad, char sexo, int numeroFaltas, boolean disponiblidad) {
+        super(cedula, nombre, apellido, edad, sexo, numeroFaltas, disponiblidad);
         this.materia = materia;
     }
     

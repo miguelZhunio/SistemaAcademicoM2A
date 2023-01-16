@@ -14,10 +14,15 @@ public class Alumno extends Persona{
         super();
     }
 
-    public Alumno(int nota, String cedula, String nombre, String apellido, int edad, char sexo, boolean Asistencia, int numeroFaltas) {
-        super(cedula, nombre, apellido, edad, sexo, Asistencia, numeroFaltas);
+    public Alumno(int nota) {
         this.nota = nota;
     }
+
+    public Alumno(int nota, String cedula, String nombre, String apellido, int edad, char sexo, int numeroFaltas, boolean disponiblidad) {
+        super(cedula, nombre, apellido, edad, sexo, numeroFaltas, disponiblidad);
+        this.nota = nota;
+    }
+
     
     // setter
     public void setNota(int nota) {

@@ -13,6 +13,6 @@ public class Colecciones {
     public static ArrayList<Profesor> ListadoDeProfesores = new ArrayList<>();
     public static ArrayList<Aula> ListadoDeAulas = new ArrayList<>();
     
-    public static final String[] ListadoMaterias = {"POO", "Base de datos" , "Ingles", "Metdologias"};
+    public static final String[] ListadoMaterias = {"POO", "Base de datos" , "Ingles", "Metodologias"};
     
 }
