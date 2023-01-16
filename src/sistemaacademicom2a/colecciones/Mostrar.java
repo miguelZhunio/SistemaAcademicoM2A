@@ -1,12 +1,14 @@
 package sistemaacademicom2a.colecciones;
 
+import sistemaacademicom2a.impresiones.Retroceso;
+
 /**
  *
  * @author Zhunio Miguel
  */
 public class Mostrar {
     
-    public static void GenerarReporte(String op) {
+    public static void GenerarReporte(String op, String ops) {
         
         if (op.equalsIgnoreCase("1")) {
             System.out.printf("%5s|%14s|%14s|%14s|%14s|%14s|%14s|%14s|%18s|%n", 
@@ -64,7 +66,7 @@ public class Mostrar {
             }
         }
           
-        
+        Retroceso.Opciones(op, ops);
     } 
     
    

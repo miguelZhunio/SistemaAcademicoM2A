@@ -3,6 +3,8 @@ package sistemaacademicom2a.principal;
 import java.util.Scanner;
 import sistemaacademicom2a.colecciones.Consultar;
 import sistemaacademicom2a.colecciones.Crear;
+import sistemaacademicom2a.colecciones.Eliminar;
+import sistemaacademicom2a.colecciones.Modificar;
 import sistemaacademicom2a.colecciones.Mostrar;
 import sistemaacademicom2a.impresiones.*;
 import sistemaacademicom2a.validaciones.*;
@@ -22,25 +24,35 @@ public class SistemaAcademicoM2A {
         
         switch(ops) {
             case "1":
-                Crear.CrearInstancias(op);
+                Crear.CrearInstancias(op, ops);
+                
                 break;
             case "2":
-                Mostrar.GenerarReporte(op);
+                Mostrar.GenerarReporte(op, ops);
+                
                 break;
             case "3":
                 if (!(op.equalsIgnoreCase("3"))) {    
                     auxCodigo = ValidarAtributos.ValidarCedula();
-                    Consultar.ConsultarExistencia(auxCodigo, op);
+                    Consultar.ConsultarExistencia(auxCodigo, op, ops);
                 } else {
                     auxCodigo = ValidarAtributos.ValidarCodigoAula();
-                    Consultar.ConsultarExistencia(auxCodigo, op);
+                    Consultar.ConsultarExistencia(auxCodigo, op, ops);
                 }
+                
                 break;
             case "4":
-                
+                Modificar.ModificarInstancia(op);
+                Retroceso.Opciones(op, ops);
+                break;
             case "5":
+                Eliminar.EliminarObjeto(op, ops);
+                Retroceso.Opciones(op, ops);
+                break;
                 
         }
+        
+        System.out.println("GRACIAS POR LA VISITA");
         
         
         

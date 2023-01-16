@@ -1,5 +1,6 @@
 package sistemaacademicom2a.colecciones;
 import sistemaacademicom2a.clases.Alumno;
+import sistemaacademicom2a.impresiones.Retroceso;
 import sistemaacademicom2a.validaciones.*;
 
 /**
@@ -9,8 +10,9 @@ import sistemaacademicom2a.validaciones.*;
 public class Consultar {
     private static boolean error = false;
     private static String auxCodigo;
+    public static int indice;
     
-    public static Object ConsultarExistencia(String auxCodigo, String op) {
+    public static Object ConsultarExistencia(String auxCodigo, String op, String ops) {
         
         Object objecto = new Object();
         
@@ -19,10 +21,11 @@ public class Consultar {
             for (int i = 0; i < Colecciones.ListadoDeProfesores.size(); i++) {
                 
                 if ((Colecciones.ListadoDeProfesores.get(i).getCedula()).equalsIgnoreCase(auxCodigo)) {
-                    System.out.printf("%14s|%14s|%14s|%14s|%14s|%14s|%14s|%18s|%n", 
-                            "CODIGO", "NOMBRE", "APELLIDO", "EDAD", "SEXO", "ASISTENCIA","FALTAS", "MATERIA"
+                    System.out.printf("%5s|%14s|%14s|%14s|%14s|%14s|%14s|%14s|%18s|%n", 
+                            "NUM","CODIGO", "NOMBRE", "APELLIDO", "EDAD", "SEXO", "ASISTENCIA","FALTAS", "MATERIA"
                     );
-                    System.out.printf("%14s|%14s|%14s|%14d|%14c|%14b|%14d|%18s|%n", 
+                    System.out.printf("%5d|%14s|%14s|%14s|%14d|%14c|%14b|%14d|%18s|%n", 
+                        (i+1),
                         Colecciones.ListadoDeProfesores.get(i).getCedula(),
                         Colecciones.ListadoDeProfesores.get(i).getNombre(),
                         Colecciones.ListadoDeProfesores.get(i).getApellido(),
@@ -30,7 +33,7 @@ public class Consultar {
                         Colecciones.ListadoDeProfesores.get(i).getSexo(),
                         Colecciones.ListadoDeProfesores.get(i).isAsistencia(),
                         Colecciones.ListadoDeProfesores.get(i).getNumeroFaltas(),
-                        Colecciones.ListadoDeProfesores.get(i).getMateria() 
+                        Colecciones.ListadoDeProfesores.get(i).getMateria()
                     ); 
                     objecto = Colecciones.ListadoDeProfesores.get(i);
                 }
@@ -43,10 +46,11 @@ public class Consultar {
             
             for (int i = 0; i < Colecciones.ListadoEstudiantilGeneral.size(); i++) {
                 if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(auxCodigo)) {
-                    System.out.printf("%14s|%14s|%14s|%14s|%14s|%14s|%14s|%18s|%n",
-                        "CODIGO", "NOMBRE", "APELLIDO", "EDAD", "SEXO", "ASISTENCIA", "FALTAS", "NOTA"
+                    System.out.printf("%5s|%14s|%14s|%14s|%14s|%14s|%14s|%14s|%18s|%n",
+                        "NUM","CODIGO", "NOMBRE", "APELLIDO", "EDAD", "SEXO", "ASISTENCIA", "FALTAS", "NOTA"
                     );
-                    System.out.printf("%14s|%14s|%14s|%14d|%14c|%14b|%14d|%18d|%n", 
+                    System.out.printf("%5d|%14s|%14s|%14s|%14d|%14c|%14b|%14d|%18d|%n", 
+                        (i+1),
                         Colecciones.ListadoEstudiantilGeneral.get(i).getCedula(),
                         Colecciones.ListadoEstudiantilGeneral.get(i).getNombre(),
                         Colecciones.ListadoEstudiantilGeneral.get(i).getApellido(),
@@ -66,10 +70,11 @@ public class Consultar {
         if (op.equalsIgnoreCase("3")) {
             for (int i = 0; i < Colecciones.ListadoDeAulas.size(); i++) {
                 if ((Colecciones.ListadoDeAulas.get(i).getCodigo()).equalsIgnoreCase(auxCodigo)) {
-                    System.out.printf("%20s|%20s|%20s|%22s|%n", 
-                    "CODIGO AULA", "NOMBRE PROFESOR", "MATERIA DADA", "NUMERO DE ESTUDIANTES"
+                    System.out.printf("%5s|%20s|%20s|%20s|%22s|%n", 
+                    "NUM","CODIGO AULA", "NOMBRE PROFESOR", "MATERIA DADA", "NUMERO DE ESTUDIANTES"
                     );
-                    System.out.printf("%20s%20s%20s$22d%n", 
+                    System.out.printf("%5d|%20s%20s%20s$22d%n", 
+                        (i+1),
                         Colecciones.ListadoDeAulas.get(i).getCodigo(),
                         Colecciones.ListadoDeAulas.get(i).getMiProfesor().getNombre(),
                         Colecciones.ListadoDeAulas.get(i).getMateriaDada(),
@@ -80,8 +85,71 @@ public class Consultar {
             }
         }
         
+        Retroceso.Opciones(op, ops);
         return objecto;
         
+    }
+    
+    public static int ConsultarIndice(String codigo, String op) {
+        
+        
+        if (op.equalsIgnoreCase("1")) {
+            for (int i = 0; i < Colecciones.ListadoDeProfesores.size(); i++) {
+                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(auxCodigo)) {
+                    indice = i;
+                    break;
+                }
+            }
+        }
+        if (op.equalsIgnoreCase("2")) {
+            for (int i = 0; i < Colecciones.ListadoEstudiantilGeneral.size(); i++) {
+                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(auxCodigo)) {
+                    indice = i;
+                }
+            }
+        }
+        
+        if (op.equalsIgnoreCase("3")) {
+            for (int i = 0; i < Colecciones.ListadoDeAulas.size(); i++) {
+                 if ((Colecciones.ListadoDeAulas.get(i).getCodigo()).equalsIgnoreCase(auxCodigo)) {
+                     indice = i;
+                 }
+            }
+        }
+        return indice;
+    }
+    
+    public static boolean ConsultarSiExiste(String codigo, String op) {
+        
+        
+        if (op.equalsIgnoreCase("1")) {
+            for (int i = 0; i < Colecciones.ListadoDeProfesores.size(); i++) {
+                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(auxCodigo)) {
+                    error = true;
+                    break;
+                }
+            }
+        }
+        if (op.equalsIgnoreCase("2")) {
+            for (int i = 0; i < Colecciones.ListadoEstudiantilGeneral.size(); i++) {
+                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(auxCodigo)) {
+                   error = true;
+                }
+            }
+        }
+        
+        if (op.equalsIgnoreCase("3")) {
+            for (int i = 0; i < Colecciones.ListadoDeAulas.size(); i++) {
+                 if ((Colecciones.ListadoDeAulas.get(i).getCodigo()).equalsIgnoreCase(auxCodigo)) {
+                    error = true;
+                 }
+            }
+        }
+        
+        if (!error) {
+            System.out.println("OBJETO NO ENCONTRADO");
+        }
+        return error;
     }
     
     public static boolean BuscarAsignatura(String nombre) {

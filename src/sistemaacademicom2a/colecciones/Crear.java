@@ -3,6 +3,7 @@ package sistemaacademicom2a.colecciones;
 import java.util.Scanner;
 import sistemaacademicom2a.clases.*;
 import sistemaacademicom2a.impresiones.Menu;
+import sistemaacademicom2a.impresiones.Retroceso;
 import sistemaacademicom2a.impresiones.SubMenu;
 import sistemaacademicom2a.validaciones.*;
 import sistemaacademicom2a.principal.*;
@@ -16,16 +17,14 @@ public class Crear {
     private static boolean error = true;
     private static Scanner in = new Scanner(System.in);
     private static String opc;
-    private static String[] args = new String[2];
  
     
-    public static void CrearInstancias(String op) {
+    public static void CrearInstancias(String op, String ops) {
         // Declaracion de las instancias de las clases
         Alumno nuevoAlumno;
         Aula nuevaAula;
         Profesor nuevoProfesor;
         
-         // Variable que ayuda en el menu luego de crear.
         
         // Variables auxiliares
         String auxString;
@@ -50,8 +49,9 @@ public class Crear {
             
               
             Colecciones.ListadoDeProfesores.add(nuevoProfesor); 
-            Consultar.ConsultarExistencia(nuevoProfesor.getCedula(), op);               
-            Opciones(op);
+            Consultar.ConsultarExistencia(nuevoProfesor.getCedula(), op, ops);   
+
+            Retroceso.Opciones(op, ops);
             
         }
         
@@ -69,9 +69,10 @@ public class Crear {
             nuevoAlumno.setSexo(auxChar);
             
             Colecciones.ListadoEstudiantilGeneral.add(nuevoAlumno); 
-            Consultar.ConsultarExistencia(nuevoAlumno.getCedula(), op);
+            Consultar.ConsultarExistencia(nuevoAlumno.getCedula(), op, ops);
             
-            Opciones(op);
+            Retroceso.Opciones(op, ops);
+            
         }
         
         if (op.equals("3")) {
@@ -83,31 +84,15 @@ public class Crear {
             nuevaAula.InsertarAlumnoAula();
    
             Colecciones.ListadoDeAulas.add(nuevaAula); 
-            Consultar.ConsultarExistencia(nuevaAula.getCodigo(), op);
+            Consultar.ConsultarExistencia(nuevaAula.getCodigo(), op, ops);
+            
+            Retroceso.Opciones(op, ops);
                 
-            Opciones(op);
         }
+        
     }
     
     
-    public static void Opciones(String op) {
-        
-        do {
-            System.out.println("\nDigite: \n"
-                        + "1 ---> Volver al menu principal \n"
-                        + "2 ---> Crear otro objeto\n"
-                        + "3 --->  Salir");
-                opc = in.next();
-                ValidarRangoNumericos.Rango1a3(opc);
-        } while (!error);
-        
-        
-        if (opc.equals("1")) { SistemaAcademicoM2A.main(args); }
-        
-        if (opc.equals("2")) { CrearInstancias(op); }
-        
-        if (opc.equals("3")) { System.exit(0); }
-    }
     
     
 }

@@ -18,6 +18,7 @@ public class ValidarAtributos {
     private static String auxString;
     private static char auxChar;
     private static int auxInt;
+    private static boolean auxBoolean;
     
     
     public static String ValidarCedula() {
@@ -168,7 +169,7 @@ public class ValidarAtributos {
                  
         } while(!error);
         
-        profesorIngresado = Consultar.ConsultarExistencia(auxString, "1");
+        profesorIngresado = Consultar.ConsultarExistencia(auxString, "1", "3");
         
         return (Profesor) profesorIngresado;
     }   
@@ -186,9 +187,41 @@ public class ValidarAtributos {
         alumnoRegistrado = new Alumno();
         int num = Integer.valueOf(auxString);
             
-        alumnoRegistrado = Consultar.ConsultarExistencia(auxString, "2");
+        alumnoRegistrado = Consultar.ConsultarExistencia(auxString, "2", "3");
                            
         return (Alumno) alumnoRegistrado;
+    } 
+    
+    public static boolean ValidarAsistencia() {
+        do {
+            System.out.print("Ingrese la asistencia y/o Disponibilidad  ---> ");
+            auxString = in.next();
+            error = auxString.matches("true|false|True|False");
+            
+            if (!error) { System.out.println(messageError);}
+            
+        } while(!error);
+        
+        auxBoolean = Boolean.valueOf(auxString);
+                
+        return auxBoolean;
+    }  
+    
+    public static int ValidarNota() {
+        do {
+            System.out.print("Ingrese la nota ---> ");
+            auxString = in.next();
+            error = auxString.matches("[0-10]");
+            
+            if (!error) { System.out.println(messageError);}
+            
+        } while(!error);
+        
+        auxInt = Integer.valueOf(auxString);
+                
+        return auxInt;
     }    
+    
+     
 
 }

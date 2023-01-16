@@ -37,5 +37,10 @@ public class ValidarRangoNumericos {
         if (!error) { System.out.println(message);}
         return error;
     }
+    public static boolean Rango1aN(String cod) {
+        error = cod.matches("[1-9]+"); 
+        if (!error) { System.out.println(message);}
+        return error;
+    }
     
 }
