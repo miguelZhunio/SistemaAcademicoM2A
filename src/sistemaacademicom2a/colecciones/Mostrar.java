@@ -56,7 +56,7 @@ public class Mostrar {
             );
             for (int i = 0; i < Colecciones.ListadoDeAulas.size(); i++) {
                 
-                System.out.printf("%5d|%20s%20s%20s$22d%n", 
+                System.out.printf("%5d|%20s|%20s|%20s|%22d|%n", 
                         (i+1),
                         Colecciones.ListadoDeAulas.get(i).getCodigo(),
                         Colecciones.ListadoDeAulas.get(i).getMiProfesor().getNombre(),
@@ -66,8 +66,16 @@ public class Mostrar {
             }
         }
           
-        Retroceso.Opciones(op, ops);
+        
     } 
+    
+    public static void MostrarAsignatura() {
+        System.out.println("\n");
+        for (int i = 0; i < Colecciones.ListadoMaterias.length; i++) {
+            System.out.println(Colecciones.ListadoMaterias[i]);
+        }
+        System.out.println("\n");
+    }
     
    
     

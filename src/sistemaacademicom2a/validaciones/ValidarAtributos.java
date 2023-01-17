@@ -4,6 +4,7 @@ import java.util.Scanner;
 import sistemaacademicom2a.colecciones.Consultar;
 import sistemaacademicom2a.clases.*;
 import sistemaacademicom2a.colecciones.Colecciones;
+import sistemaacademicom2a.colecciones.Mostrar;
 
 
 
@@ -128,6 +129,8 @@ public class ValidarAtributos {
     public static String ValidarAsignatura() {
         
         do {
+            Mostrar.MostrarAsignatura();
+            
             do {
                 System.out.print("Ingrese la asignatura que va ha impartir ---> ");
                 auxString = in.next();
@@ -158,36 +161,57 @@ public class ValidarAtributos {
     }    
     
     public static Profesor ValidarProfesor() {
-        Object profesorIngresado;
-        
+        Object profesorRegistrado;
         do {
-            System.out.print("Ingrese el codigo del profesor ---> ");
-            auxString = in.next();
-            error = auxString.matches("[0-9]{10}");
-            
-            if (!error) { System.out.println(messageError);}
-                 
+            Mostrar.GenerarReporte("1", "2");
+            do {
+                System.out.print("Ingrese el numero del profesor (Primera columna) ---> ");
+                auxString = in.next();
+                error = auxString.matches("[1-9]{1,10}"); 
+                
+                if (!error) { System.out.println(messageError);} 
+
+                int num = Integer.valueOf(auxString);
+                error = num >= Colecciones.ListadoDeProfesores.size();
+                if (!error) { System.out.println("FUERA DE LOS RANGOS");
+                } else {
+                    auxString = Colecciones.ListadoDeProfesores.get(num-1).getCedula();
+                } 
+                
+            } while(!error);      
+                
         } while(!error);
+            
         
-        profesorIngresado = Consultar.ConsultarExistencia(auxString, "1", "3");
-        
-        return (Profesor) profesorIngresado;
+        auxInt = Consultar.ConsultarIndice(auxString, "1");
+        profesorRegistrado = Colecciones.ListadoDeProfesores.get(auxInt);
+        return (Profesor) profesorRegistrado;
+                     
     }   
     
-    public static Object ValidarEstudiante() {
+    public static Alumno ValidarEstudiante() {
         Object alumnoRegistrado;
         do {
-            System.out.print("Ingrese el numero del estudiante (Primera columna) ---> ");
-            auxString = in.next();
-            error = auxString.matches("[0-9]{10}");    
-            if (!error) { System.out.println(messageError);}     
+            Mostrar.GenerarReporte("2", "2");
+            do {
+                System.out.print("Ingrese el numero del estudiante (Primera columna) ---> ");
+                auxString = in.next();
+                error = auxString.matches("[1-9]{1,10}");    
+                if (!error) { System.out.println(messageError);} 
+
+                int num = Integer.valueOf(auxString);
+                if (num >= Colecciones.ListadoEstudiantilGeneral.size()) { System.out.println("FUERA DE LOS RANGOS");
+                } else {
+                    auxString = Colecciones.ListadoEstudiantilGeneral.get(num-1).getCedula();
+                } 
+                
+            } while(!error);
             
+                
         } while(!error);
             
-        alumnoRegistrado = new Alumno();
-        int num = Integer.valueOf(auxString);
-            
-        alumnoRegistrado = Consultar.ConsultarExistencia(auxString, "2", "3");
+        auxInt = Consultar.ConsultarIndice(auxString, "2");
+        alumnoRegistrado = Colecciones.ListadoEstudiantilGeneral.get(auxInt);
                            
         return (Alumno) alumnoRegistrado;
     } 

@@ -78,11 +78,13 @@ public class Crear {
         if (op.equals("3")) {
             nuevaAula = new Aula();
             auxString = ValidarAtributos.ValidarCodigoAula();
-            nuevaAula.setCodigo(op);
+            nuevaAula.setCodigo(auxString);
             nuevoProfesor = ValidarAtributos.ValidarProfesor();
-            nuevaAula.setMiProfesor( nuevoProfesor);
+            nuevaAula.setMiProfesor(nuevoProfesor);
+            auxString = ValidarAtributos.ValidarAsignatura();
+            nuevaAula.setMateriaDada(auxString);
             nuevaAula.InsertarAlumnoAula();
-   
+            
             Colecciones.ListadoDeAulas.add(nuevaAula); 
             Consultar.ConsultarExistencia(nuevaAula.getCodigo(), op, ops);
             

@@ -1,5 +1,6 @@
 package sistemaacademicom2a.clases;
 
+import sistemaacademicom2a.colecciones.*;
 /**
  *
  * @author Zhunio Miguel
@@ -35,8 +36,13 @@ public class Alumno extends Persona{
     }
     
     @Override
-    public void Disponibilidad(String codigo) {
-        
+    public void Disponibilidad() {
+        int indice = Consultar.ConsultarIndice(this.getCedula(), "2");    
+        if (Colecciones.ListadoEstudiantilGeneral.get(indice).getNumeroFaltas() > (getDIASTRABAJADOS() * 0.25)) {
+            System.out.println("ESTUDIANTE" + Colecciones.ListadoEstudiantilGeneral.get(indice).getNombre() + " tiene " +
+                    Colecciones.ListadoEstudiantilGeneral.get(indice).getNumeroFaltas());
+            Colecciones.ListadoEstudiantilGeneral.get(indice).setDisponibilidad(false);
+        }  
     }
     
     

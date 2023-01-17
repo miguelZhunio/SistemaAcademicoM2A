@@ -77,10 +77,10 @@ public class Aula {
         Alumno alumnoIngresado;
         
         do {
-            alumnoIngresado = (Alumno) ValidarAtributos.ValidarEstudiante();
+            alumnoIngresado = ValidarAtributos.ValidarEstudiante();
             ListadoEstudiantil.add(alumnoIngresado);
             
-            System.out.println("Ingresar otro alumno \n 1. SI \n2. NO \n---> ");
+            System.out.print("Ingresar otro alumno \n 1. SI \n2. NO \n---> ");
             op = in.next();
             
            error = ValidarRangoNumericos.Rango1a2(op);

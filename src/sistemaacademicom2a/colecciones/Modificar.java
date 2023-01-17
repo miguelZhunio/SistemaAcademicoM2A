@@ -38,17 +38,23 @@ public class Modificar {
     
     public static void ModificarInstancia(String op) {
         
-        if (op.equalsIgnoreCase("3")) {    
-            auxString = ValidarAtributos.ValidarCodigoAula();
-            auxBoolean = Consultar.ConsultarSiExiste(auxString, op);
+        if (op.equalsIgnoreCase("3")) {   
+            Mostrar.GenerarReporte(op, "3");
+            do {
+                auxString = ValidarAtributos.ValidarCodigoAula();
+                Consultar.ConsultarExistencia(auxString, op, "3");
+                auxBoolean = Consultar.ConsultarSiExiste(auxString, op);
+            } while(!auxBoolean);
+            
         } else {
-            auxString = ValidarAtributos.ValidarCedula();
-            auxBoolean = Consultar.ConsultarSiExiste(auxString, op);
+            Mostrar.GenerarReporte(op, "3");
+            do {
+                auxString = ValidarAtributos.ValidarCedula();
+                auxBoolean = Consultar.ConsultarSiExiste(auxString, op);
+            } while (!auxBoolean);
+            
         } 
            
-            
-        
-  
         
         if (op.equalsIgnoreCase("1") && auxBoolean == true) {
             
@@ -114,6 +120,7 @@ public class Modificar {
                     break;
                     
             }
+            
         }
         
         if (op.equalsIgnoreCase("2") && auxBoolean == true) {

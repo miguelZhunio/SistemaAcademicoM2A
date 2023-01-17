@@ -3,7 +3,6 @@ package sistemaacademicom2a.impresiones;
 import java.util.Scanner;
 import sistemaacademicom2a.colecciones.Consultar;
 import sistemaacademicom2a.colecciones.Crear;
-import static sistemaacademicom2a.colecciones.Crear.*;
 import sistemaacademicom2a.colecciones.Eliminar;
 import sistemaacademicom2a.colecciones.Modificar;
 import sistemaacademicom2a.colecciones.Mostrar;
@@ -34,7 +33,10 @@ public class Retroceso {
                         + "3 --->  Salir");
                 opRetroceso = in.next();
                 ValidarRangoNumericos.Rango1a3(opRetroceso);
+                
         } while (!error);
+        
+        if (opRetroceso.equalsIgnoreCase("3")) { System.exit(0);}
         
         if (ops.equalsIgnoreCase("1")) {
             if (opRetroceso.equals("1")) { SistemaAcademicoM2A.main(args); }
@@ -83,6 +85,8 @@ public class Retroceso {
         
             if (opRetroceso.equals("3")) { System.exit(0); }
         }
+        
+        
         
     }
     

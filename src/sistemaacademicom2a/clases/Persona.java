@@ -75,6 +75,6 @@ public abstract class Persona {
     }
     
     // metodo polimorfismo.
-    public abstract void Disponibilidad(String codigo);   
+    public abstract void Disponibilidad();   
     
 }

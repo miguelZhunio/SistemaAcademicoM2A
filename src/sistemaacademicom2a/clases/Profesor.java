@@ -1,5 +1,8 @@
 package sistemaacademicom2a.clases;
 
+import sistemaacademicom2a.colecciones.Colecciones;
+import sistemaacademicom2a.colecciones.Consultar;
+
 /**
  *
  * @author Zhunio Miguel
@@ -32,11 +35,14 @@ public class Profesor extends Persona{
     
     // metodo codificado
     @Override
-    public void Disponibilidad(String codigo) {
-        
-        if (true) {
-            System.out.println("VERDADERO");
-        }
+    public void Disponibilidad() { 
+        int indice = Consultar.ConsultarIndice(this.getCedula(), "1");    
+        if (Colecciones.ListadoDeProfesores.get(indice).getNumeroFaltas() > (getDIASTRABAJADOS() * 0.25)) {
+            System.out.println("ESTUDIANTE" + Colecciones.ListadoDeProfesores.get(indice).getNombre() + " tiene " +
+                    Colecciones.ListadoDeProfesores.get(indice).getNumeroFaltas());
+            Colecciones.ListadoDeProfesores.get(indice).setDisponibilidad(false);
+        }  
+
     }    
     
 }

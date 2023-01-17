@@ -1,7 +1,5 @@
 package sistemaacademicom2a.colecciones;
-import sistemaacademicom2a.clases.Alumno;
 import sistemaacademicom2a.impresiones.Retroceso;
-import sistemaacademicom2a.validaciones.*;
 
 /**
  *
@@ -36,6 +34,7 @@ public class Consultar {
                         Colecciones.ListadoDeProfesores.get(i).getMateria()
                     ); 
                     objecto = Colecciones.ListadoDeProfesores.get(i);
+                    error = true;
                 }
            
             }
@@ -61,6 +60,7 @@ public class Consultar {
                         Colecciones.ListadoEstudiantilGeneral.get(i).getNota() 
                     );
                     objecto = Colecciones.ListadoEstudiantilGeneral.get(i);
+                    error = true;                    
                 }
                 
             }
@@ -73,7 +73,7 @@ public class Consultar {
                     System.out.printf("%5s|%20s|%20s|%20s|%22s|%n", 
                     "NUM","CODIGO AULA", "NOMBRE PROFESOR", "MATERIA DADA", "NUMERO DE ESTUDIANTES"
                     );
-                    System.out.printf("%5d|%20s%20s%20s$22d%n", 
+                    System.out.printf("%5d|%20s|%20s|%20s|%22d|%n", 
                         (i+1),
                         Colecciones.ListadoDeAulas.get(i).getCodigo(),
                         Colecciones.ListadoDeAulas.get(i).getMiProfesor().getNombre(),
@@ -81,11 +81,15 @@ public class Consultar {
                         Colecciones.ListadoDeAulas.get(i).getListadoEstudiantil().size()
                     );
                     objecto = Colecciones.ListadoDeAulas.get(i);
+                    error = true;
                 }
             }
         }
         
-        Retroceso.Opciones(op, ops);
+        if (!error) {
+            System.out.println("NO EXISTE NO EXISTE NO EXISTE");
+        }
+        
         return objecto;
         
     }
@@ -95,7 +99,7 @@ public class Consultar {
         
         if (op.equalsIgnoreCase("1")) {
             for (int i = 0; i < Colecciones.ListadoDeProfesores.size(); i++) {
-                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(auxCodigo)) {
+                if ((Colecciones.ListadoDeProfesores.get(i).getCedula()).equalsIgnoreCase(codigo)) {
                     indice = i;
                     break;
                 }
@@ -103,16 +107,18 @@ public class Consultar {
         }
         if (op.equalsIgnoreCase("2")) {
             for (int i = 0; i < Colecciones.ListadoEstudiantilGeneral.size(); i++) {
-                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(auxCodigo)) {
+                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(codigo)) {
                     indice = i;
+                    break;
                 }
             }
         }
         
         if (op.equalsIgnoreCase("3")) {
             for (int i = 0; i < Colecciones.ListadoDeAulas.size(); i++) {
-                 if ((Colecciones.ListadoDeAulas.get(i).getCodigo()).equalsIgnoreCase(auxCodigo)) {
+                 if ((Colecciones.ListadoDeAulas.get(i).getCodigo()).equalsIgnoreCase(codigo)) {
                      indice = i;
+                     break;
                  }
             }
         }
@@ -124,7 +130,7 @@ public class Consultar {
         
         if (op.equalsIgnoreCase("1")) {
             for (int i = 0; i < Colecciones.ListadoDeProfesores.size(); i++) {
-                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(auxCodigo)) {
+                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(codigo)) {
                     error = true;
                     break;
                 }
@@ -132,7 +138,7 @@ public class Consultar {
         }
         if (op.equalsIgnoreCase("2")) {
             for (int i = 0; i < Colecciones.ListadoEstudiantilGeneral.size(); i++) {
-                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(auxCodigo)) {
+                if ((Colecciones.ListadoEstudiantilGeneral.get(i).getCedula()).equalsIgnoreCase(codigo)) {
                    error = true;
                 }
             }
@@ -140,7 +146,7 @@ public class Consultar {
         
         if (op.equalsIgnoreCase("3")) {
             for (int i = 0; i < Colecciones.ListadoDeAulas.size(); i++) {
-                 if ((Colecciones.ListadoDeAulas.get(i).getCodigo()).equalsIgnoreCase(auxCodigo)) {
+                 if ((Colecciones.ListadoDeAulas.get(i).getCodigo()).equalsIgnoreCase(codigo)) {
                     error = true;
                  }
             }
@@ -164,8 +170,5 @@ public class Consultar {
         if(!error) { System.out.println("MATERIA NO ENCONTRADA");}
         return error;
     }
-    
-    
-    
-    
+  
 }
