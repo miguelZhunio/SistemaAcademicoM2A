@@ -26,7 +26,7 @@ public class Eliminar {
                 } while(!error);
                  
                 if (auxOp.equalsIgnoreCase("1")) {
-                    auxInt = Consultar.ConsultarIndice(auxString, op)-1;
+                    auxInt = Consultar.ConsultarIndice(auxString, op);
                     Colecciones.ListadoDeProfesores.remove(auxInt);
                     System.out.println("ELIMINADO CORRECTAMENTE");
                 }
@@ -43,9 +43,17 @@ public class Eliminar {
             auxBoolean = Consultar.ConsultarSiExiste(auxString, op);
             
             if (auxBoolean) {
-                auxInt = Consultar.ConsultarIndice(auxString, op);
-                Colecciones.ListadoEstudiantilGeneral.remove(auxInt);
-                System.out.println("ELIMINADO CORRECTAMENTE");
+                do {
+                    System.out.println("Seguro desea eliminarlo \n1. SI \n2. NO");
+                    auxOp = in.next();
+                    error = ValidarRangoNumericos.Rango1a2(auxOp);
+                } while(!error);
+                 
+                if (auxOp.equalsIgnoreCase("1")) {
+                    auxInt = Consultar.ConsultarIndice(auxString, op);
+                    Colecciones.ListadoEstudiantilGeneral.remove(auxInt);
+                    System.out.println("ELIMINADO CORRECTAMENTE");
+                }
                 
             }
                        

@@ -51,7 +51,7 @@ public class Crear {
             Colecciones.ListadoDeProfesores.add(nuevoProfesor); 
             Consultar.ConsultarExistencia(nuevoProfesor.getCedula(), op, ops);   
 
-            Retroceso.Opciones(op, ops);
+            // Retroceso.Opciones(op, ops);
             
         }
         
@@ -67,11 +67,13 @@ public class Crear {
             nuevoAlumno.setEdad(auxInt);
             auxChar = ValidarAtributos.ValidarSexo();
             nuevoAlumno.setSexo(auxChar);
+            auxInt = ValidarAtributos.ValidarNota();
+            nuevoAlumno.setNota(auxInt);
             
             Colecciones.ListadoEstudiantilGeneral.add(nuevoAlumno); 
             Consultar.ConsultarExistencia(nuevoAlumno.getCedula(), op, ops);
             
-            Retroceso.Opciones(op, ops);
+             // Retroceso.Opciones(op, ops);
             
         }
         
@@ -79,16 +81,16 @@ public class Crear {
             nuevaAula = new Aula();
             auxString = ValidarAtributos.ValidarCodigoAula();
             nuevaAula.setCodigo(auxString);
-            nuevoProfesor = ValidarAtributos.ValidarProfesor();
-            nuevaAula.setMiProfesor(nuevoProfesor);
             auxString = ValidarAtributos.ValidarAsignatura();
             nuevaAula.setMateriaDada(auxString);
+            nuevoProfesor = ValidarAtributos.ValidarProfesor(auxString);
+            nuevaAula.setMiProfesor(nuevoProfesor);
             nuevaAula.InsertarAlumnoAula();
             
             Colecciones.ListadoDeAulas.add(nuevaAula); 
             Consultar.ConsultarExistencia(nuevaAula.getCodigo(), op, ops);
             
-            Retroceso.Opciones(op, ops);
+            // Retroceso.Opciones(op, ops);
                 
         }
         

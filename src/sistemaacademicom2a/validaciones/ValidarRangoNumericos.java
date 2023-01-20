@@ -47,5 +47,10 @@ public class ValidarRangoNumericos {
         if (!error) { System.out.println(message);}
         return error;
     }
+    public static boolean Rango1a8(String cod) {
+        error = cod.matches("[1-8]{1}"); 
+        if (!error) { System.out.println(message);}
+        return error;
+    }
     
 }

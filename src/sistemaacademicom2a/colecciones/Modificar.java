@@ -26,11 +26,12 @@ public class Modificar {
     public static Alumno auxAlumno;
     public static Aula auxAula;
     public static Profesor auxProfesor;
+    public static String auxCodigo;
     
     public static String AtributosPersona = "1. Cedula \n"
-            + "2.Nombre \n"
+            + "2. Nombre \n"
             + "3. Apellido \n"
-            + "4.Edad \n"
+            + "4. Edad \n"
             + "5. Sexo \n"
             + "6. Asistencia \n"
             + "7. NumeroFaldas \n"
@@ -51,14 +52,15 @@ public class Modificar {
             do {
                 auxString = ValidarAtributos.ValidarCedula();
                 auxBoolean = Consultar.ConsultarSiExiste(auxString, op);
+                indice = Consultar.ConsultarIndice(auxString, op);
+                auxCodigo = auxString;
             } while (!auxBoolean);
             
         } 
            
         
         if (op.equalsIgnoreCase("1") && auxBoolean == true) {
-            
-            indice = Consultar.ConsultarIndice(auxString, op);
+                       
             
             do {
                 System.out.println("\n********** MODIFICAR DOCENTE **********\n");
@@ -76,6 +78,7 @@ public class Modificar {
                 case 1:
                     auxString = ValidarAtributos.ValidarCedula();
                     Colecciones.ListadoDeProfesores.get(indice).setCedula(auxString);
+                    auxCodigo = auxString;
                     break;
                 case 2:
                     auxString = ValidarAtributos.ValidarNombre();
@@ -121,10 +124,11 @@ public class Modificar {
                     
             }
             
+            Consultar.ConsultarExistencia(auxCodigo, op, "4");
+            
         }
         
         if (op.equalsIgnoreCase("2") && auxBoolean == true) {
-            indice = Consultar.ConsultarIndice(auxString, op);
             
             do {
                 System.out.println("\n********** MODIFICAR ESTUDIANTE **********\n");
@@ -185,6 +189,8 @@ public class Modificar {
                     Colecciones.ListadoEstudiantilGeneral.get(indice).setNota(auxInt);
                     break;        
             }
+            
+            Consultar.ConsultarExistencia(auxCodigo, op, "4");
         
         }
        

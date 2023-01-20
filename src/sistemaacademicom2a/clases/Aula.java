@@ -90,5 +90,62 @@ public class Aula {
             
         
     }
+    public void GenerarReporteEstudianteAula() {
+        System.out.printf("%5s|%14s|%14s|%14s|%14s|%14s|%14s|%14s|%18s|%n",
+                    "NUM","CODIGO", "NOMBRE", "APELLIDO", "EDAD", "SEXO", "ASISTENCIA", "FALTAS", "NOTA"
+        );
+        for (int i = 0; i < ListadoEstudiantil.size(); i++) {
+                
+            System.out.printf("%5d|%14s|%14s|%14s|%14d|%14c|%14b|%14d|%18d|%n", 
+                (i+1),
+                ListadoEstudiantil.get(i).getCedula(),
+                ListadoEstudiantil.get(i).getNombre(),
+                ListadoEstudiantil.get(i).getApellido(),
+                ListadoEstudiantil.get(i).getEdad(),
+                ListadoEstudiantil.get(i).getSexo(),
+                ListadoEstudiantil.get(i).isAsistencia(),
+                ListadoEstudiantil.get(i).getNumeroFaltas(),
+                ListadoEstudiantil.get(i).getNota() 
+            );
+        }
+    }
+    
+    public void ImpartirClase() {
+        if ((!miProfesor.isDisponibilidad())) {
+            System.out.println("NO SE PUEDE IMPARTIR CLASE  DISPONIBILIDAD DEL PROFESOR --->" + miProfesor.isDisponibilidad());
+        } else {
+            if (!(ListadoEstudiantil.size() > (MAX_ESTUDIANTES/2))) {
+                System.out.println("NO SE PUEDE IMPARTI CLASE DEBIDO AL AFORO DE ESTUDIANTE ---> " + ListadoEstudiantil.size());
+            } else {
+                EnListarAlumnoAprobado();
+            }
+            
+        }
+        
+    }
+    
+    public void EnListarAlumnoAprobado() {
+        int mujeresAprobadas = 0, hombresAprobados = 0;
+        int mujeresNoAprobadas = 0, hombresNoAprobados = 0;
+        for (int i = 0; i < ListadoEstudiantil.size(); i++) {
+            if (ListadoEstudiantil.get(i).getSexo() == 'F') {
+                if (ListadoEstudiantil.get(i).getNota() > 7 ) {
+                    mujeresAprobadas+=1;
+                } else {
+                    mujeresNoAprobadas += 1;
+                }
+            } else {
+                if (ListadoEstudiantil.get(i).getNota() > 7 ) {
+                    hombresAprobados+=1;
+                } else {
+                    hombresNoAprobados += 1;
+                }
+            }
+        }
+        
+        System.out.printf("%18s|%18s|%18s|%18s|%n", "MUJERES APROBADAS" , "HOMBRES APROBADOS" , "MUJERES NO APROBADAS", "HOMBRES NO APRBADOS\n");
+        System.out.printf("%18s|%18s|%18s|%18s|%n", mujeresAprobadas, hombresAprobados, mujeresNoAprobadas, hombresNoAprobados);
+        
+    }
     
 }

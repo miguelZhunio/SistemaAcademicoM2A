@@ -22,15 +22,17 @@ public class SubMenu {
                     + op + ".3. Consultar \n"
                     + op + ".4. Modificar \n"
                     + op + ".5. Eliminar \n"
-                    + op + ".6. Regresar \n"
+                    + op + ".6. Habra clases? \n"
+                    + op + ".7. Reporte de alumnos \n"
+                    + op + ".8. Regresar \n"
                     + "----> ");
                     ops = in.next();
             
-                error = ValidarRangoNumericos.Rango1a6(ops);
+                error = ValidarRangoNumericos.Rango1a8(ops);
             
             }while (!error);
         
-            if (ops.equals("6")) { Menu.MostrarMenu(); } 
+            if (ops.equals("8")) { Menu.MostrarMenu(); } 
         
             
         } else {

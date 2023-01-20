@@ -5,6 +5,8 @@ import sistemaacademicom2a.colecciones.Consultar;
 import sistemaacademicom2a.clases.*;
 import sistemaacademicom2a.colecciones.Colecciones;
 import sistemaacademicom2a.colecciones.Mostrar;
+import sistemaacademicom2a.impresiones.Menu;
+import sistemaacademicom2a.impresiones.Retroceso;
 
 
 
@@ -160,11 +162,15 @@ public class ValidarAtributos {
         return auxString;
     }    
     
-    public static Profesor ValidarProfesor() {
-        Object profesorRegistrado;
+    public static Profesor ValidarProfesor(String materia) {
+        Profesor profesorRegistrado;
         do {
             Mostrar.GenerarReporte("1", "2");
             do {
+                if (Colecciones.ListadoDeProfesores.isEmpty()) {
+                    System.out.println("\n\n\nNO EXISTEN PROFESORES\n\n\n");
+                    Menu.MostrarMenu();
+                }
                 System.out.print("Ingrese el numero del profesor (Primera columna) ---> ");
                 auxString = in.next();
                 error = auxString.matches("[1-9]{1,10}"); 
@@ -178,14 +184,25 @@ public class ValidarAtributos {
                     auxString = Colecciones.ListadoDeProfesores.get(num-1).getCedula();
                 } 
                 
-            } while(!error);      
+            } while(!error);  
+            auxInt = Consultar.ConsultarIndice(auxString, "1");
+            profesorRegistrado = (Profesor) Colecciones.ListadoDeProfesores.get(auxInt);
+
+            if (!(profesorRegistrado.getMateria().equalsIgnoreCase(materia))) { 
+                System.out.println("\nPROFESOR NO ACTO PARA IMPARTIR LA MATERIA\n"
+                        + "Materia disponible ---> " + profesorRegistrado.getMateria() + "\n"
+                );
+                error = false;
+            }
+
+            if (false == profesorRegistrado.isDisponibilidad()) { 
+                System.out.println("PROFESOR NO DISPONIBLE");
+                error = false;
+            }
                 
         } while(!error);
-            
-        
-        auxInt = Consultar.ConsultarIndice(auxString, "1");
-        profesorRegistrado = Colecciones.ListadoDeProfesores.get(auxInt);
-        return (Profesor) profesorRegistrado;
+               
+        return profesorRegistrado;
                      
     }   
     
@@ -194,6 +211,10 @@ public class ValidarAtributos {
         do {
             Mostrar.GenerarReporte("2", "2");
             do {
+                if (Colecciones.ListadoEstudiantilGeneral.isEmpty()) {
+                    System.out.println("\n\n\nNO EXISTEN PROFESORES\n\n\n");
+                    Menu.MostrarMenu();
+                }
                 System.out.print("Ingrese el numero del estudiante (Primera columna) ---> ");
                 auxString = in.next();
                 error = auxString.matches("[1-9]{1,10}");    
@@ -218,7 +239,7 @@ public class ValidarAtributos {
     
     public static boolean ValidarAsistencia() {
         do {
-            System.out.print("Ingrese la asistencia y/o Disponibilidad  ---> ");
+            System.out.print("Ingrese la asistencia  ---> ");
             auxString = in.next();
             error = auxString.matches("true|false|True|False");
             
@@ -235,7 +256,7 @@ public class ValidarAtributos {
         do {
             System.out.print("Ingrese la nota ---> ");
             auxString = in.next();
-            error = auxString.matches("[0-10]");
+            error = auxString.matches("[0-9]{1}|10");
             
             if (!error) { System.out.println(messageError);}
             
@@ -244,8 +265,64 @@ public class ValidarAtributos {
         auxInt = Integer.valueOf(auxString);
                 
         return auxInt;
-    }    
+    }   
     
-     
+    public static Profesor ValidarProfesor() {
+        Profesor profesorRegistrado;
+        do {
+            Mostrar.GenerarReporte("1", "2");
+            do {
+                if (Colecciones.ListadoDeProfesores.isEmpty()) {
+                    System.out.println("\n\n\nNO EXISTEN PROFESORES\n\n\n");
+                    Menu.MostrarMenu();
+                }
+                System.out.print("Ingrese el numero del profesor (Primera columna) ---> ");
+                auxString = in.next();
+                error = auxString.matches("[1-9]{1,10}"); 
+                
+                if (!error) { System.out.println(messageError);} 
+
+                int num = Integer.valueOf(auxString);
+                error = num >= Colecciones.ListadoDeProfesores.size();
+                if (!error) { System.out.println("FUERA DE LOS RANGOS");
+                } else {
+                    auxString = Colecciones.ListadoDeProfesores.get(num-1).getCedula();
+                } 
+                
+            } while(!error);  
+            
+        } while(!error);
+        auxInt = Consultar.ConsultarIndice(auxString, "1");
+        profesorRegistrado = (Profesor) Colecciones.ListadoDeProfesores.get(auxInt);
+        
+        return profesorRegistrado;
+                     
+    }
+    
+    public static Aula ValidarAula() {
+        Object laAula;
+        do {
+            Mostrar.GenerarReporte("3", "6");
+            do {
+                if (Colecciones.ListadoEstudiantilGeneral.isEmpty()) {
+                    System.out.println("\n\n\nNO EXISTEN AULAS\n\n\n");
+                    Menu.MostrarMenu();
+                }
+                System.out.print("Ingrese el codigo del aula ---> ");
+                auxString = in.next();
+                error = auxString.matches("[1-9]{1,10}");    
+                if (!error) { System.out.println(messageError);} 
+              
+            } while(!error);
+            Consultar.ConsultarSiExiste(auxString, "3");
+                
+        } while(!error);
+            
+        auxInt = Consultar.ConsultarIndice(auxString, "3");
+        laAula = Colecciones.ListadoDeAulas.get(auxInt);
+                           
+        return (Aula) laAula;
+    } 
+    
 
 }

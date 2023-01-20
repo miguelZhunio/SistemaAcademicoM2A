@@ -14,21 +14,20 @@ public class SistemaAcademicoM2A {
     
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
         Alumno alumno = new Alumno();
         Profesor profesor = new Profesor();
+        Aula aula = new Aula();
         
         String op, ops = "", auxCodigo;
         
         op = Menu.MostrarMenu();
         ops = SubMenu.MostrarSubMenu(op);
-
-        
        
         
         switch(ops) {
             case "1":
                 Crear.CrearInstancias(op, ops);
+                Retroceso.Opciones(op, ops);
                 break;
             case "2":
                 Mostrar.GenerarReporte(op, ops);
@@ -47,22 +46,32 @@ public class SistemaAcademicoM2A {
                 break;
             case "4":
                 Modificar.ModificarInstancia(op);
+                Retroceso.Opciones(op, ops);
                 break;
             case "5":
                 Eliminar.EliminarObjeto(op, ops);
+                Retroceso.Opciones(op, ops);
                 break;
             case "6":
+                if (op.equalsIgnoreCase("3")) {
+                    aula = ValidarAtributos.ValidarAula();
+                    aula.ImpartirClase();
+                }
                 if (op.equalsIgnoreCase("1")) {
                     profesor = ValidarAtributos.ValidarProfesor();
                     profesor.Disponibilidad();
                 } if (op.equalsIgnoreCase("2")) {
                     alumno = ValidarAtributos.ValidarEstudiante();
                     alumno.Disponibilidad();
-                }
-                            
-        }
-        
-        
+                }   
+                Retroceso.Opciones(op, ops);
+                break;
+            case "7":
+                aula = ValidarAtributos.ValidarAula();
+                aula.GenerarReporteEstudianteAula();
+                Retroceso.Opciones(op, ops);
+                break;
+        } 
         
         
         
